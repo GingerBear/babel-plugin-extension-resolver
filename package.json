@@ -1,0 +1,17 @@
+{
+  "name": "babel-plugin-extentiosn-resolver",
+  "version": "0.0.1",
+  "main": "src/index.js",
+  "description": "Import extensions resolver plugin for Babel",
+  "engines": {
+    "node": ">= 6.0.0"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "find-babel-config": "^1.1.0",
+    "glob": "^7.1.2",
+    "pkg-up": "^2.0.0",
+    "reselect": "^3.0.1",
+    "resolve": "^1.4.0"
+  }
+}
