@@ -3,7 +3,6 @@ const path = require('path');
 
 function resolvePath(sourcePath, currentFile, opts) {
   if (sourcePath[0] === '.') {
-    if (sourcePath.indexOf('CommerceTokenSessionManager') > -1) debugger;
     return resolve.sync(sourcePath, {
       basedir: path.resolve(currentFile, '..'),
       extensions: opts.extensions
@@ -32,21 +31,24 @@ function mapPathString(nodePath, state) {
   }
 }
 
-
 const importVisitors = {
-  'ImportDeclaration|ExportDeclaration': (nodePath, state) =>{
+  'ImportDeclaration|ExportDeclaration': (nodePath, state) => {
     mapPathString(nodePath.get('source'), state);
-  },
+  }
 };
 
-
 module.exports = ({ types }) => ({
-  name: 'extention-resolver',
+  name: 'extension-resolver',
+
+  pre(file) {
+    this.types = types;
+  },
+
   visitor: {
     Program: {
       enter(programPath, state) {
         programPath.traverse(importVisitors, state);
-      },
-    },
+      }
+    }
   }
 });
